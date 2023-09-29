@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "PzE9+HGm95yf5NjRDy+lgs45tUIIINDV9/h3OsFcK+DPFdlon5p3qUnc7u5RL1qukhHrbreipp9WkQZ7IOT7wQ==",
+  "dgSpecHash": "ZtkLnmlI0rJCFA7XGknA2IInvRvn7Ue8ePHKKRm3po2dCOUzmhkdTb9Pw9b6viDDwaVKKKjVzTwvVuES+TWVeA==",
   "success": true,
   "projectFilePath": "C:\\Users\\mahmo\\Desktop\\Multi Calculator App\\Multi Calculator App\\Multi Calculator App.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mahmo\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\mahmo\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
+    "C:\\Users\\mahmo\\.nuget\\packages\\bcrypt.net\\0.1.0\\bcrypt.net.0.1.0.nupkg.sha512",
     "C:\\Users\\mahmo\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\mahmo\\.nuget\\packages\\linq2db\\5.2.2\\linq2db.5.2.2.nupkg.sha512",
     "C:\\Users\\mahmo\\.nuget\\packages\\linq2db.sqlite\\5.2.2\\linq2db.sqlite.5.2.2.nupkg.sha512",
@@ -43,5 +44,16 @@
     "C:\\Users\\mahmo\\.nuget\\packages\\zstdsharp.port\\0.6.2\\zstdsharp.port.0.6.2.nupkg.sha512",
     "C:\\Users\\mahmo\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.22621.29\\microsoft.windows.sdk.net.ref.10.0.22621.29.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BCrypt.Net 0.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows10.0.22621'. This package may not be fully compatible with your project.",
+      "libraryId": "BCrypt.Net",
+      "targetGraphs": [
+        "net7.0-windows10.0.22621"
+      ]
+    }
+  ]
 }

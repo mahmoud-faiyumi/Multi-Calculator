@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
-using System.Globalization;
+using System;
 using System.Text;
+using BCrypt.Net;
 
 namespace Multi_Calculator_App
 {
@@ -9,7 +10,7 @@ namespace Multi_Calculator_App
     {
         static void Main(string[] args)
         {
-            // Start the program
+            //Start the program
             StartProgram();
         }
         static void StartProgram()
@@ -45,7 +46,7 @@ namespace Multi_Calculator_App
         }
 
         static void eng()
-        {
+        {   //connect to the DataBase
             System.Data.SqlClient.SqlConnection sqlConnection;
             string connectionString = @"Data Source=DESKTOP-QUB8L8T\SQLEXPRESS;Initial Catalog=UserInfoDB;Integrated Security=True";
 
@@ -73,7 +74,7 @@ namespace Multi_Calculator_App
                             command.Parameters.AddWithValue("@Username", EUserName);
 
                             SqlDataReader reader = command.ExecuteReader();
-
+                            //Add login logic and read data from DataBase
                             if (reader.Read())
                             {
                                 string userNameFromDB = reader["UserName"].ToString();
@@ -96,9 +97,9 @@ namespace Multi_Calculator_App
                                 Console.WriteLine("Login failed. User not found.");
                                 eng();
                             }
+                            //Close raad data connection from DataBase
                             reader.Close();
                             while (true)
-
                             {
                                 Console.WriteLine("\n1: Show exactly how Old You Are.");
                                 Console.WriteLine("2: Calculate The Difference Between Two Dates.");
@@ -110,7 +111,6 @@ namespace Multi_Calculator_App
 
                                 int choice = Convert.ToInt16(Console.ReadLine());
                                 switch (choice)
-
                                 {
                                     case 1:
                                         CalculateAge();
@@ -125,7 +125,7 @@ namespace Multi_Calculator_App
                                         break;
 
                                     case 4:
-
+                                        //Add Profile management function
                                         bool continueModifying = true;
 
                                         while (continueModifying)
@@ -152,6 +152,7 @@ namespace Multi_Calculator_App
                                                 switch (updateNum)
                                                 {
                                                     case 1:
+                                                        //Update First Name
                                                         Console.WriteLine("Enter New First Name:");
                                                         string newValue1 = Console.ReadLine();
                                                         updateQuery += "FName = @NewValue1";
@@ -159,6 +160,7 @@ namespace Multi_Calculator_App
                                                         break;
 
                                                     case 2:
+                                                        //Update Last Name
                                                         Console.WriteLine("Enter New Last Name:");
                                                         string newValue2 = Console.ReadLine();
                                                         updateQuery += "LName = @NewValue2";
@@ -166,6 +168,7 @@ namespace Multi_Calculator_App
                                                         break;
 
                                                     case 3:
+                                                        //Update Weight
                                                         Console.WriteLine("Enter New Weight:");
                                                         double newValue3 = Convert.ToDouble(Console.ReadLine());
                                                         updateQuery += "Weight = @NewValue3";
@@ -173,6 +176,7 @@ namespace Multi_Calculator_App
                                                         break;
 
                                                     case 4:
+                                                        //Update Activity Level
                                                         Console.WriteLine("Enter New Activity Level:");
                                                         string newValue4 = Console.ReadLine();
                                                         updateQuery += "ActivityLevel = @NewValue4";
@@ -180,10 +184,14 @@ namespace Multi_Calculator_App
                                                         break;
 
                                                     case 5:
-                                                        Console.WriteLine("Enter New Password:");
-                                                        string newValue5 = Console.ReadLine();
+                                                        //Change Password
+                                                        // Console.WriteLine("Enter New Password:");
+                                                        //string newValue5 = Console.ReadLine();
+                                                        string newValue5 = BCrypt.Net.BCrypt.HashPassword("NewPasswordHere"); // Hash the new password
+                                                        ChangePassword(EUserName, newValue5);
                                                         updateQuery += "Password = @NewValue5";
                                                         command1.Parameters.AddWithValue("@NewValue5", newValue5);
+                                                        
                                                         break;
 
                                                     default:
@@ -191,16 +199,15 @@ namespace Multi_Calculator_App
                                                         continue;
                                                 }
 
-                                                // Add the common part of the SQL query
+                                                //Add the common part of the SQL query
                                                 updateQuery += " WHERE UserName = @NUsername";
                                                 command1.Parameters.AddWithValue("@NUsername", EUserName);
-
                                                 command1.CommandText = updateQuery;
 
-                                                // Execute the update query
+                                                //Execute the update query
                                                 int rowsAffected = command1.ExecuteNonQuery();
 
-                                                // Check how many rows were updated
+                                                //Check how many rows were updated
                                                 if (rowsAffected > 0)
                                                 {
                                                     Console.WriteLine(rowsAffected + " rows updated.");
@@ -229,7 +236,7 @@ namespace Multi_Calculator_App
                                         break;
 
                                     default:
-                                        Console.WriteLine("Invalid choice!");
+                                        Console.WriteLine("Invalid choice!, Try again");
                                         break;
                                 }
 
@@ -242,46 +249,64 @@ namespace Multi_Calculator_App
                                 }
                             }
 
-
                             void CalculateAge()
                             {
                                 Console.WriteLine("\n=========================\n");
                                 Console.WriteLine("\nAge Calculator Program");
+                                Console.WriteLine("\n=========================\n");
+
+                                //Get the birth date from the DataBase and calculate age
                                 string birthDateFromDB = reader["BirthDate"].ToString();
                                 DateTime birthDate = Convert.ToDateTime(birthDateFromDB);
 
                                 DateTime now = DateTime.Now;
                                 TimeSpan ageTimeSpan = now - birthDate;
 
+                                //Calculate years, months, and days
                                 int years = (int)Math.Floor(ageTimeSpan.TotalDays / 365.242199);
                                 int months = (int)Math.Floor((ageTimeSpan.TotalDays % 365.242199) / 30.4368499);
                                 int days = (int)Math.Floor(ageTimeSpan.TotalDays % 30.4368499);
 
+                                //Calculate next birthday months and days
                                 int nextBirthdayMonths = (int)Math.Floor(((years + 1) * 365.24199 - ageTimeSpan.TotalDays) / 30.4368499);
                                 int nextBirthdayDays = (int)Math.Ceiling(((years + 1) * 365.24199 - ageTimeSpan.TotalDays) % 30.4368499);
 
+                                //Calculate total days, hours, minutes, and seconds
                                 int totalDays = (int)ageTimeSpan.TotalDays;
                                 int totalHours = (int)ageTimeSpan.TotalHours;
                                 Int64 totalMinutes = (Int64)ageTimeSpan.TotalMinutes;
                                 Int64 Seconds = (Int64)ageTimeSpan.TotalSeconds;
                                 string totalSeconds = Seconds.ToString("N0");
+
+                                //Calculate total heartbeats
                                 Int64 HeartBeats = totalMinutes * 80;
                                 string totalHeartBeats = HeartBeats.ToString("N0");
+
+                                //Calculate total food consumption in tonnes
                                 double totalFoodTonnes = Math.Round((years * 675.0 / 1000.0), 3);
+
+                                //Calculate total water consumption in liters
                                 int totalWaterLitres = (int)Math.Floor(totalDays * 1.892079611964252);
+
+                                //Calculate total years of sleep
                                 double totalSleepYears = Math.Round((totalDays / 365.242199) * 0.333333333333, 2);
 
-                                Console.WriteLine("\n=========================\n");
-
+                                //Check if it's the user's birthday (both days and months are 0)
                                 if (days == 0 && months == 0)
-
                                 {
-                                    Console.WriteLine("\nHappy Birthday < 3");
+                                    Console.WriteLine("\nHappy Birthday <3");
                                 }
 
+                                //Display the day of the week the user was born
                                 Console.WriteLine($"The day you were born is : {birthDate.DayOfWeek}");
+
+                                //Display the user's age in years, months, and days
                                 Console.WriteLine($"\nYour Age Is {years} Years & {months} Months & {days} Days.");
+
+                                //Display the time until the next birthday in months and days
                                 Console.WriteLine($"Next Birthday In {nextBirthdayMonths} Month & {nextBirthdayDays} Day");
+
+                                //Display various facts about the user's age
                                 Console.WriteLine($@"You Lived For:
 {years} Years.
 {months} Months.
@@ -290,35 +315,61 @@ namespace Multi_Calculator_App
 {totalHours} Hours.
 {totalMinutes} Minutes.
 {totalSeconds} Seconds.");
+
+                                //Display additional information about the user
                                 Console.WriteLine("Amazing Facts About You…\n");
-                                Console.WriteLine($"Your heart has beat for {totalHeartBeats} Times.\nYou ate {totalFoodTonnes} Ton of food.\nYou drank {totalWaterLitres} litres of water.");
+                                Console.WriteLine($"Your heart has beat for {totalHeartBeats} Times.");
+                                Console.WriteLine($"You ate {totalFoodTonnes} Ton of food.");
+                                Console.WriteLine($"You drank {totalWaterLitres} litres of water.");
                                 Console.WriteLine($"You have slept for {totalSleepYears} Years.");
+
 
                             }
 
                             void CalculateDateDifference()
                             {
+                                Console.WriteLine("\n=========================\n");
                                 Console.WriteLine("\nDifference Between Dates Calculator\n");
+                                Console.WriteLine("\n=========================\n");
                                 Console.WriteLine("Enter Dates Like[Ex: 2000 4 16]\n");
                                 DateTime firstDate, secondDate;
+
+                                //Prompt the user to enter the first date
                                 Console.WriteLine("Enter First Date: ");
                                 firstDate = Convert.ToDateTime(Console.ReadLine());
+
+                                //Prompt the user to enter the second date
                                 Console.WriteLine("\nEnter Second Date: ");
                                 secondDate = Convert.ToDateTime(Console.ReadLine());
 
+                                //Calculate the time difference between the two dates
                                 TimeSpan difference = firstDate - secondDate;
+
+                                //Calculate the total number of days in the difference
                                 int totalDays = (int)difference.TotalDays;
+
+                                //Calculate the total years in the difference
                                 int totalYears = (int)(totalDays / 365.242199);
+
+                                //Calculate the remaining days after removing complete years
                                 double remainingDays = totalDays % 365.242199;
+
+                                //Calculate the total months in the remaining days
                                 int totalMonths = (int)(remainingDays / 30.4368499);
+
+                                //Calculate the remaining days after removing complete months
                                 int remainingMonthsDays = (int)(remainingDays % 30.4368499);
 
-                                Console.WriteLine($"\nThe Difference Between The First Date And The Second Date Is…\n{totalYears}Years & {totalMonths} Months & {remainingMonthsDays} Days.");
+                                //Display the calculated date difference
+                                Console.WriteLine($"\nThe Difference Between The First Date And The Second Date Is…\n{totalYears} Years & {totalMonths} Months & {remainingMonthsDays} Days.");
                             }
 
                             void CalculateHealth()
                             {
-                                // Read user inputs for weight, height, age, gender, and activity level from DataBase
+                                Console.WriteLine("\n=========================\n");
+                                Console.WriteLine("\nHealth calculations\n");
+                                Console.WriteLine("\n=========================\n");
+                                //Read user inputs for weight, height, age, gender, and activity level from the DataBase
                                 string weightFromDB = reader["Weight"].ToString();
                                 double weight = Convert.ToDouble(weightFromDB);
 
@@ -334,16 +385,16 @@ namespace Multi_Calculator_App
                                 string activityFromDB = reader["ActivityLevel"].ToString();
                                 string activityLevel = Convert.ToString(activityFromDB);
 
-                                // Calculate BMI
-                                double bmi = Math.Round(weight / Math.Pow(height / 100, 2), 1);
+                                //Import BMI from DataBase
+                                string BMIDB = reader["BMI"].ToString();
+                                double bmi = Convert.ToDouble(BMIDB);
 
-                                // Calculate basal metabolic rate (BMR)
+                                //Calculate basal metabolic rate (BMR) based on gender
                                 double bmr = gender == "male" ? 66 + (13.7 * weight) + (5 * height) - (6.8 * age) : 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
 
-                                // Calculate daily calorie needs based on activity level
+                                //Calculate daily calories needs based on activity level
                                 double dailyCalorieNeeds = 0;
                                 switch (activityLevel)
-
                                 {
                                     case "lazy":
                                         dailyCalorieNeeds = bmr * 1.2;
@@ -354,17 +405,19 @@ namespace Multi_Calculator_App
                                     case "medium":
                                         dailyCalorieNeeds = bmr * 1.55;
                                         break;
-                                    default:
+                                    case "active":
                                         dailyCalorieNeeds = bmr * 1.725;
+                                        break;
+                                    default:
+                                        Console.WriteLine("Invalid choice!, Try agine");
                                         break;
                                 }
 
                                 int cal = Convert.ToInt32(dailyCalorieNeeds);
 
-                                // Determine BMI category
+                                //Determine BMI category
                                 String category = "";
                                 switch (bmi)
-
                                 {
                                     case double b when b < 18.5:
                                         category = "Underweight";
@@ -379,35 +432,33 @@ namespace Multi_Calculator_App
                                         category = "Obesity";
                                         break;
                                 }
-                                // Calculate ideal weight
+
+                                //Calculate ideal weight based on gender
                                 double idealWeight = gender == "male" ? height - 105 : height - 110;
 
-                                Console.WriteLine("\n ========================\n");
-
-                                // Display BMI and category
+                                //Display BMI and BMI category
                                 Console.WriteLine("\nYour BMI Is: " + bmi);
                                 Console.WriteLine("Your BMI Category Is: " + category);
 
-                                // Display daily calorie needs
+                                //Display daily calories needs
                                 Console.WriteLine("Your daily calorie needs are: " + cal + " calories");
 
-                                // Display ideal weight
+                                //Display ideal weight
                                 Console.WriteLine("Your Ideal Weight Is: " + idealWeight);
 
-                                // Provide advice based on BMI category
+                                //Provide advice based on BMI category
                                 if (category == "Underweight")
-
                                 {
-                                    Console.WriteLine("\nYour weight is under the minimum recommended weight.We advise you to do the following:");
-                                    Console.WriteLine("\n1.Eat more meals.");
-                                    Console.WriteLine("2.Drink smoothies.");
-                                    Console.WriteLine("3.Monitor and avoid drinks and foods that reduce appetite.");
-                                    Console.WriteLine("4.Exercise regularly.");
+                                    Console.WriteLine("\nYour weight is under the minimum recommended weight. We advise you to do the following:");
+                                    Console.WriteLine("\n1. Eat more meals.");
+                                    Console.WriteLine("2. Drink smoothies.");
+                                    Console.WriteLine("3. Monitor and avoid drinks and foods that reduce appetite.");
+                                    Console.WriteLine("4. Exercise regularly.");
                                     Console.WriteLine("\nIf you do not find a result, we recommend that you see a doctor.");
                                 }
                                 else if (category == "Obesity")
                                 {
-                                    Console.WriteLine("\nYour weight is over the maximum recommended weight, we advise you to do the following:");
+                                    Console.WriteLine("\nYour weight is over the maximum recommended weight. We advise you to do the following:");
                                     Console.WriteLine("\n1. Exercise regularly.");
                                     Console.WriteLine("2. Follow a diet with specialist follow-up.");
                                     Console.WriteLine("3. Medicinal obesity treatment prescribed by a doctor.");
@@ -425,12 +476,16 @@ namespace Multi_Calculator_App
                                     Console.WriteLine("6. Cook food at home.");
                                     Console.WriteLine("7. Exercise regularly.");
                                 }
+                                else
+                                {
+                                    Console.WriteLine("\nYour BMI is in the normal range. We advise you to continue to eat healthy and exercise regularly");
+                                }
                             }
                         }
                         break;
 
                     case 2:
-                        // Add code for creating a new account
+                        //Prompt the user for registration information
                         Console.WriteLine("Enter your first name:");
                         string Fname = Console.ReadLine();
 
@@ -446,6 +501,7 @@ namespace Multi_Calculator_App
                         string Password = GetUserInput("Create a Password:");
                         string rePassword = GetUserInput("Re-enter Password:");
 
+                        //Ensure that the entered passwords match
                         while (Password != rePassword)
                         {
                             Console.WriteLine("Passwords do not match. Please re-enter.");
@@ -453,7 +509,7 @@ namespace Multi_Calculator_App
                             rePassword = GetUserInput("Re-enter Password:");
                         }
 
-                        Console.WriteLine("Enter your BirthDate (YYYY MM DD):");
+                        Console.WriteLine("Enter your BirthDate (2000 4 16):");
                         DateTime BirthDate = Convert.ToDateTime(Console.ReadLine());
                         DateTime now = DateTime.Now;
                         TimeSpan ageTimeSpan = now - BirthDate;
@@ -469,10 +525,10 @@ namespace Multi_Calculator_App
 
                         string activityLevel = SelectActivity();
 
-                        // Calculate BMI
+                        //Calculate BMI
                         double BMI = Math.Round(Weight / Math.Pow(Height / 100.0, 2), 1);
 
-                        // Insert user data into the database
+                        //Insert user data into the DataBase
                         string insertQuery = "INSERT INTO UserInfo (FName, LName, Email, UserName, Password, BirthDate, Gender, Height, Weight, Age, ActivityLevel, BMI) " +
                                              "VALUES (@Fname, @Lname, @Email, @UserName, @Password, @BirthDate, @gender, @Height, @Weight, @Age, @activityLevel, @BMI)";
                         using (SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection))
@@ -492,10 +548,11 @@ namespace Multi_Calculator_App
 
                             insertCommand.ExecuteNonQuery();
                         }
+
                         break;
 
                     default:
-                        Console.WriteLine("Invalid choice!\n");
+                        Console.WriteLine("Invalid choice!, Try agine");
                         break;
                 }
             }
@@ -504,12 +561,14 @@ namespace Multi_Calculator_App
                 Console.WriteLine("An error occurred: " + ex.Message);
             }
 
+            //Helper method to get user input
             static string GetUserInput(string message)
             {
                 Console.WriteLine(message);
                 return Console.ReadLine();
             }
 
+            //Helper method to select gender
             static string SelectGender()
             {
                 while (true)
@@ -528,6 +587,7 @@ namespace Multi_Calculator_App
                 }
             }
 
+            //Helper method to select activity level
             static string SelectActivity()
             {
                 while (true)
@@ -545,252 +605,647 @@ namespace Multi_Calculator_App
                     }
                 }
             }
+            static void ChangePassword(string username, string newPassword)
+            {
+                // Prompt for a new password and verify its strength
+                
+                do
+                {
+                    Console.Write("Enter a new password: ");
+                    newPassword = Console.ReadLine();
+                } while (!IsPasswordStrong(newPassword));
 
+                // Hash the new password before storing it
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
+
+                // Update the password in the database
+                if (UpdatePassword(username, hashedPassword))
+                {
+                    Console.WriteLine("Password changed successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("Password change failed.");
+                }
+            }
+
+            static bool IsPasswordStrong(string password)
+            {
+                // Implement your password strength logic here
+                // You can check for criteria like minimum length, upper/lowercase, digits, special characters, etc.
+                if (password.Length < 8)
+                {
+                    Console.WriteLine("Password must be at least 8 characters long.");
+                    return false;
+                }
+                // Add more password strength checks as needed
+
+                return true;
+            }
+
+            static bool UpdatePassword(string username, string newPasswordHash)
+            {
+                // Implement logic to update the password in your database
+                // Example: Update the 'UserInfo' table with the new password hash
+                try
+                {
+                    // Replace this with your actual database update code
+                    // In a real application, you should use a database connection and SQL commands
+                    // Here, we're just simulating the update for demonstration purposes
+                    Console.WriteLine($"Simulating password update for user: {username}");
+                    Console.WriteLine($"New password hash: {newPasswordHash}");
+                    return true; // Simulated success
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error updating password: {ex.Message}");
+                    return false;
+                }
+            }
 
         }
         static void arabic()
-        {
-            Console.WriteLine("\nمرحبا بك في اول برنامج لي");
+        {   //الاتصال بقاعدة البيانات
+            System.Data.SqlClient.SqlConnection sqlConnection;
+            string connectionString = @"Data Source=DESKTOP-QUB8L8T\SQLEXPRESS;Initial Catalog=UserInfoDB;Integrated Security=True";
 
-            while (true)
+            try
             {
-                Console.WriteLine("\n1: لحساب كم عمرك.");
-                Console.WriteLine("2: لحساب الفرق بين تاريخين.");
-                Console.WriteLine("3: لعرض معلومات عامة عن صحتك.\n");
-                Console.WriteLine("4: للخروج");
-                Console.WriteLine("5: لإعادة اختيار اللغة\n");
-                Console.Write("ادخل رقم اختيارك: \n");
+                sqlConnection = new SqlConnection(connectionString);
+                sqlConnection.Open();
 
-                int choice = Convert.ToInt16(Console.ReadLine());
-                switch (choice)
+                Console.WriteLine("\n1: تسجيل الدخول إلى حساب موجود\n2: إنشاء حساب جديد\n");
+                Console.Write("أدخل رقم اختيارك: \n");
+                int account = Convert.ToInt16(Console.ReadLine());
+                switch (account)
                 {
                     case 1:
-                        CalculateAge();
+                        Console.WriteLine("أدخل اسم المستخدم:");
+                        string EUserName = Console.ReadLine();
+
+                        Console.WriteLine("أدخل كلمة المرور:");
+                        string EPassword = Console.ReadLine();
+
+                        string readQuery = "SELECT * FROM UserInfo WHERE UserName = @Username";
+
+                        using (SqlCommand command = new SqlCommand(readQuery, sqlConnection))
+                        {
+                            command.Parameters.AddWithValue("@Username", EUserName);
+
+                            SqlDataReader reader = command.ExecuteReader();
+                            //إضافة منطق تسجيل الدخول وقراءة البيانات من قاعدة البيانات
+                            if (reader.Read())
+                            {
+                                string userNameFromDB = reader["UserName"].ToString();
+                                string passwordFromDB = reader["Password"].ToString();
+
+                                if (EPassword == passwordFromDB)
+                                {
+                                    Console.WriteLine("\nتسجيل الدخول ناجح!\n");
+                                    string WlcMessage = reader["FName"].ToString();
+                                    Console.WriteLine($"مرحبًا {WlcMessage}\n");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("فشل تسجيل الدخول. يرجى التحقق من كلمة المرور.");
+                                    arabic();
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("فشل تسجيل الدخول. المستخدم غير موجود.");
+                                arabic();
+                            }
+                            //إغلاق اتصال قراءة البيانات من قاعدة البيانات
+                            reader.Close();
+                            while (true)
+                            {
+                                Console.WriteLine("\n1: عرض كم عمرك بالضبط.");
+                                Console.WriteLine("2: حساب الفرق بين تاريخين.");
+                                Console.WriteLine("3: عرض معلومات عامة عن صحتك.\n");
+                                Console.WriteLine("4: تحديث معلوماتك.");
+                                Console.WriteLine("5: الخروج.");
+                                Console.WriteLine("6: اختيار اللغة مرة أخرى.\n");
+                                Console.Write("أدخل رقم اختيارك: \n");
+
+                                int choice = Convert.ToInt16(Console.ReadLine());
+                                switch (choice)
+                                {
+                                    case 1:
+                                        CalculateAge();
+                                        break;
+
+                                    case 2:
+                                        CalculateDateDifference();
+                                        break;
+
+                                    case 3:
+                                        CalculateHealth();
+                                        break;
+
+                                    case 4:
+                                        //إضافة وظيفة إدارة الملف الشخصي
+                                        bool continueModifying = true;
+
+                                        while (continueModifying)
+                                        {
+                                            Console.WriteLine("ماذا تريد تعديله؟");
+                                            Console.WriteLine("1: تعديل الاسم الأول.");
+                                            Console.WriteLine("2: تعديل الاسم الأخير.");
+                                            Console.WriteLine("3: تعديل الوزن.");
+                                            Console.WriteLine("4: تعديل مستوى النشاط.");
+                                            Console.WriteLine("5: تغيير كلمة المرور.");
+                                            Console.WriteLine("6: الخروج\n");
+                                            int updateNum = Convert.ToInt16(Console.ReadLine());
+
+                                            if (updateNum == 6)
+                                            {
+                                                continueModifying = false;
+                                                continue;
+                                            }
+
+                                            string updateQuery = "UPDATE UserInfo SET ";
+
+                                            using (SqlCommand command1 = new SqlCommand("", sqlConnection))
+                                            {
+                                                switch (updateNum)
+                                                {
+                                                    case 1:
+                                                        //تحديث الاسم الأول
+                                                        Console.WriteLine("أدخل الاسم الأول الجديد:");
+                                                        string newValue1 = Console.ReadLine();
+                                                        updateQuery += "FName = @NewValue1";
+                                                        command1.Parameters.AddWithValue("@NewValue1", newValue1);
+                                                        break;
+
+                                                    case 2:
+                                                        //تحديث الاسم الأخير
+                                                        Console.WriteLine("أدخل الاسم الأخير الجديد:");
+                                                        string newValue2 = Console.ReadLine();
+                                                        updateQuery += "LName = @NewValue2";
+                                                        command1.Parameters.AddWithValue("@NewValue2", newValue2);
+                                                        break;
+
+                                                    case 3:
+                                                        //تحديث الوزن
+                                                        Console.WriteLine("أدخل الوزن الجديد:");
+                                                        double newValue3 = Convert.ToDouble(Console.ReadLine());
+                                                        updateQuery += "Weight = @NewValue3";
+                                                        command1.Parameters.AddWithValue("@NewValue3", newValue3);
+                                                        break;
+
+                                                    case 4:
+                                                        //تحديث مستوى النشاط
+                                                        Console.WriteLine("أدخل مستوى النشاط الجديد:");
+                                                        string newValue4 = Console.ReadLine();
+                                                        updateQuery += "ActivityLevel = @NewValue4";
+                                                        command1.Parameters.AddWithValue("@NewValue4", newValue4);
+                                                        break;
+
+                                                    case 5:
+                                                        //تغيير كلمة المرور
+                                                        Console.WriteLine("أدخل كلمة المرور الجديدة:");
+                                                        string newValue5 = Console.ReadLine();
+                                                        Console.WriteLine("أعد ادخال كلمة المرور:");
+                                                        string renewValue5 = Console.ReadLine();
+
+                                                        updateQuery += "Password = @NewValue5";
+                                                        command1.Parameters.AddWithValue("@NewValue5", newValue5);
+                                                        break;
+
+                                                    default:
+                                                        Console.WriteLine("خيار غير صالح، أعد المحاولة");
+                                                        continue;
+                                                }
+
+                                                //إضافة الجزء الآخر من استعلام SQL
+                                                updateQuery += " WHERE UserName = @NUsername";
+                                                command1.Parameters.AddWithValue("@NUsername", EUserName);
+                                                command1.CommandText = updateQuery;
+
+                                                //تنفيذ استعلام التحديث
+                                                int rowsAffected = command1.ExecuteNonQuery();
+
+                                                //التحقق من عدد الصفوف التي تم تحديثها
+                                                if (rowsAffected > 0)
+                                                {
+                                                    Console.WriteLine(rowsAffected + " صف تم تحديثه.");
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("لم يتم تحديث أي صفوف.");
+                                                }
+
+                                                Console.WriteLine("هل ترغب في تعديل معلومات أخرى؟ (نعم/لا)");
+                                                string continueResponse = Console.ReadLine().Trim().ToUpper();
+                                                if (continueResponse != "نعم")
+                                                {
+                                                    continueModifying = false;
+                                                }
+                                            }
+                                        }
+
+                                        break;
+                                    case 5:
+                                        Console.WriteLine("انتهى الخروج.");
+                                        break;
+
+                                    case 6:
+                                        StartProgram();
+                                        break;
+
+                                    default:
+                                        Console.WriteLine("اختيار غير صالح، أعد المحاولة");
+                                        break;
+                                }
+
+                                Console.Write("\nاضغط على أي مفتاح للمتابعة أو 'q' للخروج: ");
+
+                                if (Console.ReadLine().ToLower() == "q")
+
+                                {
+                                    break;
+                                }
+                            }
+
+                            void CalculateAge()
+                            {
+                                Console.WriteLine("\n=========================\n");
+                                Console.WriteLine("\nبرنامج حاسبة العمر");
+                                Console.WriteLine("\n=========================\n");
+
+                                //الحصول على تاريخ الميلاد من قاعدة البيانات وحساب العمر
+                                string birthDateFromDB = reader["BirthDate"].ToString();
+                                DateTime birthDate = Convert.ToDateTime(birthDateFromDB);
+
+                                DateTime now = DateTime.Now;
+                                TimeSpan ageTimeSpan = now - birthDate;
+
+                                //حساب السنوات والأشهر والأيام
+                                int years = (int)Math.Floor(ageTimeSpan.TotalDays / 365.242199);
+                                int months = (int)Math.Floor((ageTimeSpan.TotalDays % 365.242199) / 30.4368499);
+                                int days = (int)Math.Floor(ageTimeSpan.TotalDays % 30.4368499);
+
+                                //حساب شهور وأيام عيد الميلاد القادم
+                                int nextBirthdayMonths = (int)Math.Floor(((years + 1) * 365.24199 - ageTimeSpan.TotalDays) / 30.4368499);
+                                int nextBirthdayDays = (int)Math.Ceiling(((years + 1) * 365.24199 - ageTimeSpan.TotalDays) % 30.4368499);
+
+                                //حساب الأيام والساعات والدقائق والثواني الإجمالية
+                                int totalDays = (int)ageTimeSpan.TotalDays;
+                                int totalHours = (int)ageTimeSpan.TotalHours;
+                                Int64 totalMinutes = (Int64)ageTimeSpan.TotalMinutes;
+                                Int64 Seconds = (Int64)ageTimeSpan.TotalSeconds;
+                                string totalSeconds = Seconds.ToString("N0");
+
+                                //حساب مجموع دقات القلب
+                                Int64 HeartBeats = totalMinutes * 80;
+                                string totalHeartBeats = HeartBeats.ToString("N0");
+
+                                //حساب مجموع استهلاك الطعام بالأطنان
+                                double totalFoodTonnes = Math.Round((years * 675.0 / 1000.0), 3);
+
+                                //حساب مجموع استهلاك المياه باللتر
+                                int totalWaterLitres = (int)Math.Floor(totalDays * 1.892079611964252);
+
+                                //حساب مجموع سنوات النوم
+                                double totalSleepYears = Math.Round((totalDays / 365.242199) * 0.333333333333, 2);
+
+                                //التحقق مما إذا كان اليوم هو عيد ميلاد المستخدم (صفر الأيام والأشهر)
+                                if (days == 0 && months == 0)
+                                {
+                                    Console.WriteLine("\nيوم ميلاد سعيد <3");
+                                }
+
+                                // عرض يوم الأسبوع الذي وُلد فيه المستخدم
+                                Console.WriteLine($"اليوم الذي وُلدت فيه هو: {birthDate.DayOfWeek}");
+
+                                // عرض عمر المستخدم بالسنوات والشهور والأيام
+                                Console.WriteLine($"\nعمرك هو {years} سنة و {months} شهر و {days} يومًا.");
+
+                                // عرض الزمن حتى العيد الميلاد التالي بالشهور والأيام
+                                Console.WriteLine($"العيد الميلاد التالي في {nextBirthdayMonths} شهر و {nextBirthdayDays} يوم");
+
+                                // عرض حقائق متنوعة حول عمر المستخدم
+                                Console.WriteLine($@"لقد عشت لمدة:
+{years} سنة.
+{months} شهر.
+{(int)(totalDays / 7)} أسبوع.
+{totalDays} يوم.
+{totalHours} ساعة.
+{totalMinutes} دقيقة.
+{totalSeconds} ثانية.");
+
+                                // عرض معلومات إضافية حول المستخدم
+                                Console.WriteLine("حقائق مذهلة عنك…\n");
+                                Console.WriteLine($"قلبك قد نبض {totalHeartBeats} مرة.");
+                                Console.WriteLine($"لقد أكلت {totalFoodTonnes} طن من الطعام.");
+                                Console.WriteLine($"لقد شربت {totalWaterLitres} لترًا من الماء.");
+                                Console.WriteLine($"لقد نمت لمدة {totalSleepYears} سنة.");
+
+
+                            }
+
+                            void CalculateDateDifference()
+                            {
+                                Console.WriteLine("\n=========================\n");
+                                Console.WriteLine("أدخل التواريخ كالتالي [مثال: 2000 4 16]\n");
+                                Console.WriteLine("\n=========================\n");
+                                Console.WriteLine("Enter Dates Like[Ex: 2000 4 16]\n");
+                                DateTime firstDate, secondDate;
+
+                                // الطلب من المستخدم على إدخال التاريخ الأول
+                                Console.WriteLine("أدخل التاريخ الأول: ");
+                                firstDate = Convert.ToDateTime(Console.ReadLine());
+
+                                // الطلب من المستخدم على إدخال التاريخ الثاني
+                                Console.WriteLine("\nأدخل التاريخ الثاني: ");
+                                secondDate = Convert.ToDateTime(Console.ReadLine());
+
+                                // حساب الفارق الزمني بين التاريخين
+                                TimeSpan difference = firstDate - secondDate;
+
+                                // حساب الإجمالي لعدد الأيام في الفارق
+                                int totalDays = (int)difference.TotalDays;
+
+                                // حساب الإجمالي للسنوات في الفارق
+                                int totalYears = (int)(totalDays / 365.242199);
+
+                                // حساب الأيام المتبقية بعد إزالة السنوات الكاملة
+                                double remainingDays = totalDays % 365.242199;
+
+                                // حساب الإجمالي للشهور في الأيام المتبقية
+                                int totalMonths = (int)(remainingDays / 30.4368499);
+
+                                // حساب الأيام المتبقية بعد إزالة الشهور الكاملة
+                                int remainingMonthsDays = (int)(remainingDays % 30.4368499);
+
+                                // عرض فارق التاريخ المحسوب
+                                Console.WriteLine($"\nالفارق بين التاريخ الأول والتاريخ الثاني هو…\n{totalYears} سنة و {totalMonths} شهر و {remainingMonthsDays} يومًا.");
+                            }
+
+                            void CalculateHealth()
+                            {
+                                Console.WriteLine("\n=========================\n");
+                                Console.WriteLine("\nالحسابات الصحية\n");
+                                Console.WriteLine("\n=========================\n");
+                                // قراءة إدخالات المستخدم للوزن والطول والعمر والجنس ومستوى النشاط من قاعدة البيانات
+                                string weightFromDB = reader["Weight"].ToString();
+                                double weight = Convert.ToDouble(weightFromDB);
+
+                                string heightFromDB = reader["Height"].ToString();
+                                double height = Convert.ToDouble(heightFromDB);
+
+                                string ageFromDB = reader["Age"].ToString();
+                                int age = Convert.ToInt32(ageFromDB);
+
+                                string genderFromDB = reader["Gender"].ToString();
+                                string gender = Convert.ToString(genderFromDB);
+
+                                string activityFromDB = reader["ActivityLevel"].ToString();
+                                string activityLevel = Convert.ToString(activityFromDB);
+
+                                //استيراد مؤشر كتلة الجسم من قاعدة البيانات
+                                string BMIDB = reader["BMI"].ToString();
+                                double bmi = Convert.ToDouble(BMIDB);
+
+                                // حساب معدل الأيض الأساسي (BMR) استنادًا إلى الجنس
+                                double bmr = gender == "male" ? 66 + (13.7 * weight) + (5 * height) - (6.8 * age) : 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
+
+                                // حساب السعرات الحرارية اليومية المطلوبة استنادًا إلى مستوى النشاط
+                                double dailyCalorieNeeds = 0;
+                                switch (activityLevel)
+                                {
+                                    case "lazy":
+                                        dailyCalorieNeeds = bmr * 1.2;
+                                        break;
+                                    case "lightly":
+                                        dailyCalorieNeeds = bmr * 1.375;
+                                        break;
+                                    case "medium":
+                                        dailyCalorieNeeds = bmr * 1.55;
+                                        break;
+                                    case "active":
+                                        dailyCalorieNeeds = bmr * 1.725;
+                                        break;
+                                    default:
+                                        Console.WriteLine("خيار غير صالح!، حاول مرة أخرى");
+                                        break;
+                                }
+
+                                int cal = Convert.ToInt32(dailyCalorieNeeds);
+
+                                // تحديد فئة مؤشر كتلة الجسم
+                                String category = "";
+                                switch (bmi)
+                                {
+                                    case double b when b < 18.5:
+                                        category = "نقص وزن";
+                                        break;
+                                    case double b when b < 25:
+                                        category = "وزن طبيعي";
+                                        break;
+                                    case double b when b < 30:
+                                        category = "زيادة وزن";
+                                        break;
+                                    default:
+                                        category = "سمنة";
+                                        break;
+                                }
+
+                                // حساب الوزن المثالي استنادًا إلى الجنس
+                                double idealWeight = gender == "male" ? height - 105 : height - 110;
+
+                                // عرض مؤشر كتلة الجسم والفئة
+                                Console.WriteLine("\nمؤشر كتلة الجسم الخاص بك هو: " + bmi);
+                                Console.WriteLine("فئة مؤشر كتلة الجسم الخاص بك هي: " + category);
+
+                                // عرض احتياجات السعرات اليومية
+                                Console.WriteLine("احتياجات السعرات اليومية الخاصة بك هي: " + cal + " سعر حراري");
+
+                                // عرض الوزن المثالي
+                                Console.WriteLine("وزنك المثالي هو: " + idealWeight);
+
+                                // تقديم نصائح استنادًا إلى فئة مؤشر كتلة الجسم
+                                if (category == "نقص وزن")
+                                {
+                                    Console.WriteLine("\nوزنك أقل من الحد الأدنى الموصى به. ننصحك باتباع الإرشادات التالية:");
+                                    Console.WriteLine("\n1. تناول وجبات أكثر.");
+                                    Console.WriteLine("2. شرب العصائر الصحية.");
+                                    Console.WriteLine("3. مراقبة وتجنب المشروبات والأطعمة التي تقلل من الشهية.");
+                                    Console.WriteLine("4. ممارسة التمارين بانتظام.");
+                                    Console.WriteLine("\nإذا لم تجد نتيجة، نوصي بزيارة الطبيب.");
+                                }
+                                else if (category == "سمنة")
+                                {
+                                    Console.WriteLine("\nوزنك يزيد عن الحد الأقصى الموصى به. ننصحك باتباع الإرشادات التالية:");
+                                    Console.WriteLine("\n1. ممارسة التمارين بانتظام.");
+                                    Console.WriteLine("2. اتباع نظام غذائي بمتابعة طبية مختصة.");
+                                    Console.WriteLine("3. استخدام علاج طبي لعلاج السمنة وفقًا لتوجيهات طبيب.");
+                                    Console.WriteLine("4. إجراء عملية جراحية إذا اقتضت الحاجة.");
+                                    Console.WriteLine("5. ممارسة الرياضة بإشراف أخصائي أو مدرب محترف.");
+                                }
+                                else if (category == "زيادة وزن")
+                                {
+                                    Console.WriteLine("\nوزنك يتجاوز الحد الأقصى الموصى به. للوقاية من السمنة، قم باتباع الخطوات التالية:");
+                                    Console.WriteLine("\n1. تناول خمس وجبات صغيرة في اليوم.");
+                                    Console.WriteLine("2. تجنب الأطعمة المصنعة مثل النقانق واللحوم المعلبة.");
+                                    Console.WriteLine("3. قلل استهلاك السكر.");
+                                    Console.WriteLine("4. تقليل استخدام المحليات الصناعية.");
+                                    Console.WriteLine("5. تجنب الدهون المشبعة.");
+                                    Console.WriteLine("6. طهي الطعام في المنزل.");
+                                    Console.WriteLine("7. ممارسة التمارين الرياضية بانتظام.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\nمؤشر كتلة الجسم الخاص بك في المدى الطبيعي. ننصحك بالاستمرار في تناول الطعام الصحي وممارسة الرياضة بانتظام.");
+                                }
+                            }
+                        }
                         break;
 
                     case 2:
-                        CalculateDateDifference();
-                        break;
+                        //إضافة منطق إنشاء حساب جديد وإدخال البيانات إلى قاعدة البيانات
+                        Console.WriteLine("أدخل الاسم الأول:");
+                        string Fname = Console.ReadLine();
 
-                    case 3:
-                        CalculateHealth();
-                        break;
+                        Console.WriteLine("أدخل الاسم الأخير:");
+                        string Lname = Console.ReadLine();
 
-                    case 4:
-                        Console.WriteLine("تم الخروج.");
-                        break;
+                        Console.WriteLine("أدخل بريدك الإلكتروني:");
+                        string Email = Console.ReadLine();
 
-                    case 5:
-                        StartProgram();
+                        Console.WriteLine("إنشئ اسم مستخدم:");
+                        string UserName = Console.ReadLine();
+
+                        string Password = GetUserInput("أنشئ كلمة مرور:");
+                        string rePassword = GetUserInput("إعادة إدخال كلمة المرور:");
+
+                        //للتأكد من تطابق كلمات المرور المدخلة
+                        while (Password != rePassword)
+                        {
+                            Console.WriteLine("كلمة المرور غير مطابقة. الرجاء إعادة الإدخال.");
+                            Password = GetUserInput("أنشئ كلمة مرور:");
+                            rePassword = GetUserInput("إعادة إدخال كلمة المرور:");
+                        }
+
+                        Console.WriteLine("أدخل تاريخ ميلادك (2000 4 16):");
+                        DateTime BirthDate = Convert.ToDateTime(Console.ReadLine());
+                        DateTime now = DateTime.Now;
+                        TimeSpan ageTimeSpan = now - BirthDate;
+                        int Age = (int)Math.Floor(ageTimeSpan.TotalDays / 365.242199);
+
+                        string gender = SelectGender();
+
+                        Console.WriteLine("أدخل الوزن (بالكيلوغرام):");
+                        int Weight = Convert.ToInt16(Console.ReadLine());
+
+                        Console.WriteLine("أدخل الطول (بالسنتيمتر):");
+                        int Height = Convert.ToInt16(Console.ReadLine());
+
+                        string activityLevel = SelectActivity();
+
+                        //حساب مؤشر كتلة الجسم
+                        double BMI = Math.Round(Weight / Math.Pow(Height / 100.0, 2), 1);
+
+                        //أدخال بيانات المستخدم في قاعدة البيانات
+                        string insertQuery = "INSERT INTO UserInfo (FName, LName, Email, UserName, Password, BirthDate, Gender, Height, Weight, Age, ActivityLevel, BMI) " +
+                                             "VALUES (@Fname, @Lname, @Email, @UserName, @Password, @BirthDate, @gender, @Height, @Weight, @Age, @activityLevel, @BMI)";
+                        using (SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection))
+                        {
+                            insertCommand.Parameters.AddWithValue("@Fname", Fname);
+                            insertCommand.Parameters.AddWithValue("@Lname", Lname);
+                            insertCommand.Parameters.AddWithValue("@Email", Email);
+                            insertCommand.Parameters.AddWithValue("@UserName", UserName);
+                            insertCommand.Parameters.AddWithValue("@Password", Password);
+                            insertCommand.Parameters.AddWithValue("@BirthDate", BirthDate);
+                            insertCommand.Parameters.AddWithValue("@gender", gender);
+                            insertCommand.Parameters.AddWithValue("@Height", Height);
+                            insertCommand.Parameters.AddWithValue("@Weight", Weight);
+                            insertCommand.Parameters.AddWithValue("@Age", Age);
+                            insertCommand.Parameters.AddWithValue("@activityLevel", activityLevel);
+                            insertCommand.Parameters.AddWithValue("@BMI", BMI);
+
+                            insertCommand.ExecuteNonQuery();
+                        }
+
                         break;
 
                     default:
-                        Console.WriteLine("اختيار خاطئ!");
+                        Console.WriteLine("خيار غير صالح!، حاول مرة أخرى");
                         break;
                 }
-
-                Console.Write("\nاضغط اي زر للإستمرار او 'q' للخروج من التطبيق: ");
-
-                if (Console.ReadLine().ToLower() == "q")
-                {
-                    break;
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("حدث خطأ: " + ex.Message);
             }
 
-
-            void CalculateAge()
+            // وظيفة للحصول على مدخلات المستخدم
+            static string GetUserInput(string message)
             {
-                Console.WriteLine("\nبرنامج حساب العمر");
-                Console.Write("ادخل تاريخ ميلادك (YYYY MM DD): ");
-                DateTime birthDate;
+                Console.WriteLine(message);
+                return Console.ReadLine();
+            }
 
-                if (DateTime.TryParse(Console.ReadLine(), out birthDate))
+            // وظيفة لتحديد الجنس
+            static string SelectGender()
+            {
+                while (true)
                 {
-                    DateTime now = DateTime.Now;
-                    TimeSpan ageTimeSpan = now - birthDate;
+                    Console.WriteLine("أدخل جنسك (ذكر/أنثى):");
+                    string gender = Console.ReadLine().ToLower();
 
-                    int years = (int)Math.Floor(ageTimeSpan.TotalDays / 365.242199);
-                    int months = (int)Math.Floor((ageTimeSpan.TotalDays % 365.242199) / 30.4368499);
-                    int days = (int)Math.Floor(ageTimeSpan.TotalDays % 30.4368499);
-
-                    int nextBirthdayMonths = (int)Math.Floor(((years + 1) * 365.24199 - ageTimeSpan.TotalDays) / 30.4368499);
-                    int nextBirthdayDays = (int)Math.Ceiling(((years + 1) * 365.24199 - ageTimeSpan.TotalDays) % 30.4368499);
-
-                    int totalDays = (int)ageTimeSpan.TotalDays;
-                    int totalHours = (int)ageTimeSpan.TotalHours;
-                    Int64 totalMinutes = (Int64)ageTimeSpan.TotalMinutes;
-                    Int64 Seconds = (Int64)ageTimeSpan.TotalSeconds;
-                    string totalSeconds = Seconds.ToString("N0");
-                    Int64 HeartBeats = totalMinutes * 80;
-                    string totalHeartBeats = HeartBeats.ToString("N0");
-
-                    double totalFoodTonnes = Math.Round((years * 675.0 / 1000.0), 3);
-                    int totalWaterLitres = (int)Math.Floor(totalDays * 1.892079611964252);
-                    double totalSleepYears = Math.Round((totalDays / 365.242199) * 0.333333333333, 2);
-
-                    Console.WriteLine("\n========================\n");
-
-                    if (days == 0 && months == 0)
+                    if (gender == "ذكر" || gender == "أنثى" || gender == "انثى")
                     {
-                        Console.WriteLine("\nكل عام وانت بخير <3");
+                        if (gender == "ذكر")
+                        {
+                            gender = "male";
+                        }
+                        else if (gender == "أنثى" || gender == "انثى")
+                        {
+                            gender = "female";
+                        }
+                        return gender;
                     }
-                    CultureInfo arabicCulture = new CultureInfo("ar-SA"); // Create an instance of Arabic culture
-
-                    Console.WriteLine("اليوم الذي ولدت فيه هو " + birthDate.DayOfWeek);
-                    Console.WriteLine("\nعمرك " + years + " سنة و " + months + " اشهر و " + days + " يوم.");
-                    Console.WriteLine("ذكرى يوم ميلادك بعد " + nextBirthdayMonths + " اشهر و " + nextBirthdayDays + " يوم.");
-                    Console.WriteLine("لقد عشت لمدة " + years + " سنة " + months + " اشهر " + ((int)(totalDays / 7)) + " اسبوع " + totalDays + " يوم " + totalHours + " ساعة " + totalMinutes + " دقيقة " + totalSeconds + " ثانية.");
-                    Console.WriteLine("حقائق مذهلة عنك…\n");
-                    Console.WriteLine("قام قلبك بالنبض " + totalHeartBeats + " مرة.\nلقد اكلت " + totalFoodTonnes + " طن من الطعام.\nلقد شربت " + totalWaterLitres + " لتر من الماء.");
-                    Console.WriteLine("لقد نمت لمدة " + totalSleepYears + " سنة.");
+                    else
+                    {
+                        Console.WriteLine("إدخال غير صالح. الرجاء اختيار 'ذكر' أو 'أنثى'.");
+                    }
                 }
             }
 
-            void CalculateDateDifference()
+            //وظيفة لتحديد مستوى النشاط
+            static string SelectActivity()
             {
-                Console.WriteLine("\nحاسبة الفرق بين تاريخين\n");
-                Console.WriteLine("ادخل التاريخين على صورة: [16 4 2000]\n");
-                DateTime firstDate, secondDate;
-                Console.WriteLine("ادخل التاريخ الاول: ");
-                firstDate = Convert.ToDateTime(Console.ReadLine());
-                Console.WriteLine("\nادخل التاريخ الثاني: ");
-                secondDate = Convert.ToDateTime(Console.ReadLine());
-
-                TimeSpan difference = firstDate - secondDate;
-                int totalDays = (int)difference.TotalDays;
-                int totalYears = (int)(totalDays / 365.242199);
-                double remainingDays = totalDays % 365.242199;
-                int totalMonths = (int)(remainingDays / 30.4368499);
-                int remainingMonthsDays = (int)(remainingDays % 30.4368499);
-
-                Console.WriteLine("\nالفرق بين التاريخ الاول والثاني هو…\n" + totalYears + " سنة و " + totalMonths + " اشهر و " + remainingMonthsDays + " يوم.");
-            }
-
-            void CalculateHealth()
-            {
-                // Read user inputs for weight, height, age, gender, and activity level
-                Console.WriteLine("ادخل وزنك بالكيلو غرام: ");
-                double weight = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("ادخل طولك بالسنتيميتر: ");
-                double height = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("ادخل عمرك: ");
-                int age = Convert.ToInt32(Console.ReadLine());
-
-                // Validate user input for gender
-                Console.WriteLine("ادخل جنسك: \n1: ذكر\n2: أنثى");
-                Console.Write("ادخل اختيارك: \n");
-                int gender = Convert.ToInt16(Console.ReadLine());
-                double bmr = 0;
-                // Calculate basal metabolic rate (BMR)
-                switch (gender)
+                while (true)
                 {
-                    case 1:
-                        bmr = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
-                        break;
-                    case 2:
-                        bmr = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
-                        break;
-                    default:
-                        Console.WriteLine("#ادخال خاطئ، حاول مجددا#");
+                    Console.WriteLine("الرجاء إدخال مستوى نشاطك (كسول، خفيف، متوسط، نشيط): ");
+                    string activityLevel = Console.ReadLine().ToLower();
 
-                        break;
-                }
-
-                Console.WriteLine("ادخل مستوى نشاطك... \n1: لكثير الجلوس\n2: لقليل النشاط\n3: لمتوسط النشاط\n4: للنشيط");
-
-                double bmi = Math.Round(weight / Math.Pow(height / 100, 2), 1);
-
-                // Calculate daily calorie needs based on activity level
-                double dailyCalorieNeeds = 0;
-
-                // Validate user input for activity level
-                Console.Write("ادخل اختيارك: \n");
-                int activityLevel = Convert.ToInt16(Console.ReadLine());
-                switch (activityLevel)
-                {
-                    case 1:
-                        dailyCalorieNeeds = bmr * 1.2;
-                        break;
-                    case 2:
-                        dailyCalorieNeeds = bmr * 1.375;
-                        break;
-                    case 3:
-                        dailyCalorieNeeds = bmr * 1.55;
-                        break;
-                    case 4:
-                        dailyCalorieNeeds = bmr * 1.725;
-                        break;
-                    default:
-                        Console.WriteLine("#ادخال خاطئ، حاول مجددا#");
-
-                        break;
-                }
-
-                int cal = Convert.ToInt32(dailyCalorieNeeds);
-
-                // Determine BMI category
-                String category = "";
-                switch (bmi)
-                {
-                    case double b when b < 18.5:
-                        category = "النحافة";
-                        break;
-                    case double b when b < 25:
-                        category = "طبيعي";
-                        break;
-                    case double b when b < 30:
-                        category = "وزن زائد";
-                        break;
-                    default:
-                        category = "السمنة";
-                        break;
-                }
-                // Calculate ideal weight
-                double idealWeight = gender == 'M' ? height - 105 : height - 110;
-
-                Console.WriteLine("\n========================\n");
-
-                // Display BMI and category
-                Console.WriteLine("\nمؤشر كتلة جسمك هو :" + bmi);
-                Console.WriteLine("فئة وزن جسمك هي: " + category);
-
-                // Display daily calorie needs
-                Console.WriteLine("يحتاج جسدك الى " + cal + " سعرة يوميا");
-
-                // Display ideal weight
-                Console.WriteLine("وزنك المثالي هو : " + idealWeight);
-
-                // Provide advice based on BMI category
-                if (category == "النحافة")
-                {
-                    Console.WriteLine("\nوزنك يقل عن الحد الأدنى الموصى به. ننصحك باتباع ما يلي:");
-                    Console.WriteLine("\n1. تناول وجبات أكثر في اليوم.");
-                    Console.WriteLine("2. شرب العصائر السموثي.");
-                    Console.WriteLine("3. مراقبة وتجنب المشروبات والأطعمة التي تقلل الشهية.");
-                    Console.WriteLine("4. ممارسة التمارين الرياضية بانتظام.");
-                    Console.WriteLine("\nإذا لم تحصل على نتائج ملموسة، نوصيك بزيارة الطبيب.");
-                }
-                else if (category == "السمنة")
-                {
-                    Console.WriteLine("\nوزنك يتجاوز الحد الأقصى الموصى به، ننصحك باتباع ما يلي:");
-                    Console.WriteLine("\n1. ممارسة التمارين الرياضية بانتظام.");
-                    Console.WriteLine("2. اتباع نظام غذائي مع متابعة أخصائي تغذية.");
-                    Console.WriteLine("3. العلاج الدوائي للسمنة الموصوف من قبل الطبيب.");
-                    Console.WriteLine("4. العلاج الجراحي.");
-                    Console.WriteLine("5. ممارسة الرياضة بمتابعة أخصائي أو مدرب محترف.");
-                }
-                else if (category == "وزن زائد")
-                {
-                    Console.WriteLine("\nوزنك يتجاوز الحد الموصى به. للوقاية من السمنة، اتبع الخطوات التالية:");
-                    Console.WriteLine("\n1. تناول خمس وجبات صغيرة في اليوم.");
-                    Console.WriteLine("2. تجنب الأطعمة المصنعة مثل السجق واللحوم المعلبة.");
-                    Console.WriteLine("3. قلل استهلاكك للسكر.");
-                    Console.WriteLine("4. قلل استخدام المحليات الاصطناعية.");
-                    Console.WriteLine("5. تجنب الدهون المشبعة.");
-                    Console.WriteLine("6. قم بطهي الطعام في المنزل.");
-                    Console.WriteLine("7. مارس التمارين بانتظام.");
+                    if (activityLevel == "كسول" || activityLevel == "خفيف" || activityLevel == "متوسط" || activityLevel == "نشيط")
+                    {
+                        if (activityLevel == "كسول")
+                        {
+                            activityLevel = "lazy";
+                        }
+                        else if (activityLevel == "خفيف")
+                        {
+                            activityLevel = "lightly";
+                        }
+                        else if (activityLevel == "متوسط")
+                        {
+                            activityLevel = "medium";
+                        }
+                        else if (activityLevel == "نشيط")
+                        {
+                            activityLevel = "active";
+                        }
+                        return activityLevel;
+                    }
+                    else
+                    {
+                        Console.WriteLine("إدخال غير صالح. الرجاء إدخال 'كسول' أو 'خفيف' أو 'متوسط' أو 'نشيط'.");
+                    }
                 }
             }
         }
