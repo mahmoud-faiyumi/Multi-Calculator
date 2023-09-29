@@ -1,7 +1,5 @@
 ﻿using System.Data.SqlClient;
-using System;
 using System.Text;
-using BCrypt.Net;
 
 namespace Multi_Calculator_App
 {
@@ -191,7 +189,7 @@ namespace Multi_Calculator_App
                                                         ChangePassword(EUserName, newValue5);
                                                         updateQuery += "Password = @NewValue5";
                                                         command1.Parameters.AddWithValue("@NewValue5", newValue5);
-                                                        
+
                                                         break;
 
                                                     default:
@@ -608,7 +606,7 @@ namespace Multi_Calculator_App
             static void ChangePassword(string username, string newPassword)
             {
                 // Prompt for a new password and verify its strength
-                
+
                 do
                 {
                     Console.Write("Enter a new password: ");
