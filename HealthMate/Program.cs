@@ -148,8 +148,7 @@ namespace HealthMate
                                 Console.WriteLine("Login failed. User not found.");
                                 eng();
                             }
-                            //Close raad data connection from DataBase
-                            reader.Close();
+                            
                             while (true)
                             {
                                 Console.WriteLine("\n1: Show exactly how Old You Are.");
@@ -176,6 +175,9 @@ namespace HealthMate
                                         break;
 
                                     case 4:
+                                        //Close raad data connection from DataBase
+                                        reader.Close();
+
                                         //Add Profile management function
                                         bool continueModifying = true;
 
@@ -255,8 +257,8 @@ namespace HealthMate
                                                         string plainText = UserPass;
                                                         string encryptedText = encryptionService1.Encrypt(plainText);
 
-                                                        updateQuery += "Password = @plainText";
-                                                        command1.Parameters.AddWithValue("@plainText", plainText);
+                                                        updateQuery += "Password = @encryptedText";
+                                                        command1.Parameters.AddWithValue("@encryptedText", encryptedText);
 
                                                         break;
 
@@ -317,9 +319,9 @@ namespace HealthMate
 
                             void CalculateAge()
                             {
-                                Console.WriteLine("\n=========================\n");
-                                Console.WriteLine("\nAge Calculator Program");
-                                Console.WriteLine("\n=========================\n");
+                                Console.WriteLine("\n=========================");
+                                Console.WriteLine("Age Calculator Program");
+                                Console.WriteLine("=========================\n");
 
                                 //Get the birth date from the DataBase and calculate age
                                 string birthDateFromDB = reader["BirthDate"].ToString();
@@ -394,9 +396,9 @@ namespace HealthMate
 
                             void CalculateDateDifference()
                             {
-                                Console.WriteLine("\n=========================\n");
-                                Console.WriteLine("\nDifference Between Dates Calculator\n");
-                                Console.WriteLine("\n=========================\n");
+                                Console.WriteLine("\n=========================");
+                                Console.WriteLine("Difference Between Dates Calculator\n");
+                                Console.WriteLine("=========================\n");
                                 Console.WriteLine("Enter Dates Like[Ex: 2000 4 16]\n");
                                 DateTime firstDate, secondDate;
 

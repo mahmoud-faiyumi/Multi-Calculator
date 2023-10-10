@@ -8,3 +8,13 @@ C:\Users\mahmo\Desktop\HealthMate\HealthMate UI\obj\Debug\HealthMate UI.csproj.C
 C:\Users\mahmo\Desktop\HealthMate\HealthMate UI\obj\Debug\HealthMate UI.exe
 C:\Users\mahmo\Desktop\HealthMate\HealthMate UI\obj\Debug\HealthMate UI.pdb
 C:\Users\mahmo\Desktop\HealthMate\HealthMate UI\obj\Debug\HealthMate_UI.Form1.resources
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\HealthMate UI.exe.config
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\HealthMate UI.exe
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\HealthMate UI.pdb
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.csproj.AssemblyReference.cache
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.Form1.resources
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.Properties.Resources.resources
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.csproj.GenerateResource.cache
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.csproj.CoreCompileInputs.cache
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.exe
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.pdb

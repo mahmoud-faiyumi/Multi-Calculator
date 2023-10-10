@@ -19,7 +19,15 @@ namespace HealthMate_UI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            MessageBox.Show("السلام عليكم");
+        }
 
+        private void LoginButton_Click(object sender, EventArgs e)
+        {
+            string usernameText = Username.Text; // Get the text from the TextBox
+            Username.Text = string.Empty; // Clear the TextBox
+            string passwordText = Password.Text; // Get the text from the TextBox
+            Password.Text = string.Empty; // Clear the TextBox
         }
     }
 }

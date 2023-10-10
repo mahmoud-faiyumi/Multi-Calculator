@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthMate", "HealthMate\HealthMate.csproj", "{E8774023-F36F-4EE1-9343-B1A59CBEF4D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthMate UI", "HealthMate UI\HealthMate UI.csproj", "{B0C7D1C3-6F08-4DB5-A301-05A39F29E070}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthMate UI", "HealthMate_UI\HealthMate UI.csproj", "{B0C7D1C3-6F08-4DB5-A301-05A39F29E070}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
