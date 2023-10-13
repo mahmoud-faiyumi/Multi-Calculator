@@ -12,9 +12,15 @@ C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\HealthMate UI.exe.conf
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\HealthMate UI.exe
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\HealthMate UI.pdb
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.csproj.AssemblyReference.cache
-C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.Form1.resources
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.Properties.Resources.resources
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.csproj.GenerateResource.cache
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.csproj.CoreCompileInputs.cache
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.exe
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.pdb
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.LoginEN.resources
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.CreateAc1EN.resources
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.CreateAc2EN.resources
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\System.Data.SqlClient.dll
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\System.Data.SqlClient.xml
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.csproj.CopyComplete
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.Main_menuEN.resources
