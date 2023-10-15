@@ -15,9 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="linq2db.SQLite" Version="5.2.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
-    <PackageReference Include="MongoDB.Driver.Core" Version="2.21.0" />
+    <PackageReference Include="FCM.Net" Version="1.0.5" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
+    <PackageReference Include="linq2db.SQLite" Version="5.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.22.0" />
     <PackageReference Include="Npgsql" Version="7.0.6" />
     <PackageReference Include="Stub.System.Data.SQLite.Core.NetStandard" Version="1.0.118" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />

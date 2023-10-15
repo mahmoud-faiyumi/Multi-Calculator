@@ -5,6 +5,9 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using FireSharp.Config;
+using FireSharp.Response;
+using FireSharp.Interfaces;
 
 namespace HealthMate_UI
 {
