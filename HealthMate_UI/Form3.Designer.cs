@@ -39,26 +39,32 @@
             this.HeightLable = new System.Windows.Forms.Label();
             this.Subtitle = new System.Windows.Forms.Label();
             this.CreateAccbtn = new System.Windows.Forms.Button();
+            this.PasswordMatchLabel = new System.Windows.Forms.Label();
+            this.PasswordStrengthLabel = new System.Windows.Forms.Label();
+            this.BackBtn = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // RePassword
             // 
-            this.RePassword.Location = new System.Drawing.Point(355, 223);
+            this.RePassword.Location = new System.Drawing.Point(355, 157);
             this.RePassword.Name = "RePassword";
             this.RePassword.Size = new System.Drawing.Size(204, 33);
             this.RePassword.TabIndex = 34;
+            this.RePassword.TextChanged += new System.EventHandler(this.RePassword_TextChanged);
             // 
             // Password
             // 
-            this.Password.Location = new System.Drawing.Point(61, 223);
+            this.Password.Location = new System.Drawing.Point(61, 157);
             this.Password.Name = "Password";
             this.Password.Size = new System.Drawing.Size(204, 33);
             this.Password.TabIndex = 33;
+            this.Password.TextChanged += new System.EventHandler(this.Password_TextChanged);
             // 
             // RePassLabel
             // 
             this.RePassLabel.AutoSize = true;
-            this.RePassLabel.Location = new System.Drawing.Point(350, 195);
+            this.RePassLabel.Location = new System.Drawing.Point(350, 129);
             this.RePassLabel.Name = "RePassLabel";
             this.RePassLabel.Size = new System.Drawing.Size(152, 25);
             this.RePassLabel.TabIndex = 32;
@@ -67,7 +73,7 @@
             // PassLabel
             // 
             this.PassLabel.AutoSize = true;
-            this.PassLabel.Location = new System.Drawing.Point(56, 195);
+            this.PassLabel.Location = new System.Drawing.Point(56, 129);
             this.PassLabel.Name = "PassLabel";
             this.PassLabel.Size = new System.Drawing.Size(84, 25);
             this.PassLabel.TabIndex = 31;
@@ -75,22 +81,24 @@
             // 
             // Weight
             // 
-            this.Weight.Location = new System.Drawing.Point(355, 142);
+            this.Weight.Location = new System.Drawing.Point(355, 76);
             this.Weight.Name = "Weight";
             this.Weight.Size = new System.Drawing.Size(204, 33);
             this.Weight.TabIndex = 30;
+            this.Weight.TextChanged += new System.EventHandler(this.Weight_TextChanged);
             // 
             // Height_cm
             // 
-            this.Height_cm.Location = new System.Drawing.Point(61, 142);
+            this.Height_cm.Location = new System.Drawing.Point(61, 76);
             this.Height_cm.Name = "Height_cm";
             this.Height_cm.Size = new System.Drawing.Size(204, 33);
             this.Height_cm.TabIndex = 29;
+            this.Height_cm.TextChanged += new System.EventHandler(this.Height_cm_TextChanged);
             // 
             // WeightLable
             // 
             this.WeightLable.AutoSize = true;
-            this.WeightLable.Location = new System.Drawing.Point(350, 114);
+            this.WeightLable.Location = new System.Drawing.Point(350, 48);
             this.WeightLable.Name = "WeightLable";
             this.WeightLable.Size = new System.Drawing.Size(109, 25);
             this.WeightLable.TabIndex = 28;
@@ -99,7 +107,7 @@
             // HeightLable
             // 
             this.HeightLable.AutoSize = true;
-            this.HeightLable.Location = new System.Drawing.Point(56, 114);
+            this.HeightLable.Location = new System.Drawing.Point(56, 48);
             this.HeightLable.Name = "HeightLable";
             this.HeightLable.Size = new System.Drawing.Size(108, 25);
             this.HeightLable.TabIndex = 27;
@@ -118,7 +126,7 @@
             // CreateAccbtn
             // 
             this.CreateAccbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CreateAccbtn.Location = new System.Drawing.Point(229, 310);
+            this.CreateAccbtn.Location = new System.Drawing.Point(229, 314);
             this.CreateAccbtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CreateAccbtn.Name = "CreateAccbtn";
             this.CreateAccbtn.Size = new System.Drawing.Size(156, 31);
@@ -127,12 +135,55 @@
             this.CreateAccbtn.UseVisualStyleBackColor = true;
             this.CreateAccbtn.Click += new System.EventHandler(this.CreateAccbtn_Click);
             // 
+            // PasswordMatchLabel
+            // 
+            this.PasswordMatchLabel.AutoSize = true;
+            this.PasswordMatchLabel.Font = new System.Drawing.Font("El Messiri", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordMatchLabel.ForeColor = System.Drawing.Color.Red;
+            this.PasswordMatchLabel.Location = new System.Drawing.Point(352, 193);
+            this.PasswordMatchLabel.Name = "PasswordMatchLabel";
+            this.PasswordMatchLabel.Size = new System.Drawing.Size(0, 17);
+            this.PasswordMatchLabel.TabIndex = 37;
+            // 
+            // PasswordStrengthLabel
+            // 
+            this.PasswordStrengthLabel.AutoSize = true;
+            this.PasswordStrengthLabel.Font = new System.Drawing.Font("El Messiri", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Black;
+            this.PasswordStrengthLabel.Location = new System.Drawing.Point(58, 193);
+            this.PasswordStrengthLabel.Name = "PasswordStrengthLabel";
+            this.PasswordStrengthLabel.Size = new System.Drawing.Size(0, 17);
+            this.PasswordStrengthLabel.TabIndex = 38;
+            // 
+            // BackBtn
+            // 
+            this.BackBtn.Location = new System.Drawing.Point(12, 9);
+            this.BackBtn.Name = "BackBtn";
+            this.BackBtn.Size = new System.Drawing.Size(55, 30);
+            this.BackBtn.TabIndex = 42;
+            this.BackBtn.Text = "Back";
+            this.BackBtn.UseVisualStyleBackColor = true;
+            this.BackBtn.Click += new System.EventHandler(this.BackBtn_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(236, 352);
+            this.progressBar1.Maximum = 11;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(143, 23);
+            this.progressBar1.Step = 1;
+            this.progressBar1.TabIndex = 43;
+            // 
             // CreateAc2EN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(595, 390);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.BackBtn);
+            this.Controls.Add(this.PasswordStrengthLabel);
+            this.Controls.Add(this.PasswordMatchLabel);
             this.Controls.Add(this.CreateAccbtn);
             this.Controls.Add(this.Subtitle);
             this.Controls.Add(this.RePassword);
@@ -151,6 +202,8 @@
             this.Name = "CreateAc2EN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HealthMate";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateAc2EN_FormClosing);
+            this.Load += new System.EventHandler(this.CreateAc2EN_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,5 +221,9 @@
         private System.Windows.Forms.Label HeightLable;
         private System.Windows.Forms.Label Subtitle;
         private System.Windows.Forms.Button CreateAccbtn;
+        private System.Windows.Forms.Label PasswordMatchLabel;
+        private System.Windows.Forms.Label PasswordStrengthLabel;
+        private System.Windows.Forms.Button BackBtn;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

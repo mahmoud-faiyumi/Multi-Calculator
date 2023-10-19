@@ -21,5 +21,10 @@ namespace HealthMate_UI
         {
 
         }
+
+        private void Main_menuEN_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }     
     }
 }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_menuEN));
             this.Subtitle = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // Subtitle
@@ -42,12 +43,20 @@
             this.Subtitle.TabIndex = 36;
             this.Subtitle.Text = "HealthMate";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(231, 192);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.TabIndex = 37;
+            // 
             // Main_menuEN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(595, 390);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.Subtitle);
             this.Font = new System.Drawing.Font("El Messiri SemiBold", 12F, System.Drawing.FontStyle.Bold);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -57,6 +66,7 @@
             this.Name = "Main_menuEN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HealthMate";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_menuEN_FormClosing);
             this.Load += new System.EventHandler(this.Main_menuEN_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -66,5 +76,6 @@
         #endregion
 
         private System.Windows.Forms.Label Subtitle;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
