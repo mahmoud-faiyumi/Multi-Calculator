@@ -61,4 +61,4 @@ C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\ru-RU\JavaScriptEngine
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\en\zxcvbn.net.resources.dll
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\fr\zxcvbn.net.resources.dll
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.CreateAc1EN.resources
-C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\Guna.UI2.dll
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.AgeCalcEN.resources
