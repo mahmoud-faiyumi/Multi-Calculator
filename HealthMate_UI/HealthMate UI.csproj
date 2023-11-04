@@ -166,6 +166,7 @@
       <DependentUpon>AgeCalcEN.cs</DependentUpon>
     </Compile>
     <Compile Include="CommonValues.cs" />
+    <Compile Include="HeightConverter.cs" />
     <Compile Include="EncryptionService.cs" />
     <Compile Include="InitializeDatabaseConnection.cs" />
     <Compile Include="LoginEN.cs">
@@ -200,6 +201,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UserInfoDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="WeightConverter.cs" />
     <Compile Include="WelcomeDependTime.cs" />
     <EmbeddedResource Include="AgeCalcEN.resx">
       <DependentUpon>AgeCalcEN.cs</DependentUpon>
@@ -255,6 +257,10 @@
     <Content Include="app logo.ico" />
     <None Include="Resources\hide eye.png" />
     <None Include="Resources\show eye.png" />
+    <None Include="Resources\CM-01.png" />
+    <None Include="Resources\inches-01.png" />
+    <None Include="Resources\KG-01.png" />
+    <None Include="Resources\LB-01.png" />
     <Content Include="Scripts\zxcvbn-async.js" />
     <Content Include="Scripts\zxcvbn.js" />
   </ItemGroup>

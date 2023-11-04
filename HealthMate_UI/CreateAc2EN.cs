@@ -10,6 +10,8 @@ namespace HealthMate_UI
         bool[] fieldEditedFlags = new bool[4]; // Create an array of boolean flags to track whether each field has been edited
         private bool passwordVisible = false;
         private bool passwordVisibleRE = false;
+        private bool inches = true; // Initially set to inches
+        private bool LB = true;  // Initially set to pounds
 
         private string fname;
         private string lname;
@@ -51,11 +53,47 @@ namespace HealthMate_UI
             PasswordVisibility.BackgroundImageLayout = ImageLayout.Stretch; // Set the layout to stretch
             PasswordVisibilityRE.BackgroundImage = Properties.Resources.hide_eye; // Use your initial image here
             PasswordVisibilityRE.BackgroundImageLayout = ImageLayout.Stretch; // Set the layout to stretch
+            InchesToCm.BackgroundImage = Properties.Resources.inches_01; // Use the CM image
+            InchesToCm.BackgroundImageLayout = ImageLayout.Stretch; // Set the layout to stretch
+            KGToLB.BackgroundImage = Properties.Resources.LB_01; // Use the LB image
+            KGToLB.BackgroundImageLayout = ImageLayout.Stretch; // Set the layout to stretch
         }
 
         private void CreateAc2EN_Load(object sender, EventArgs e)
         {
             progressBar1.Value = 7;
+        }
+
+        private void InchesToCm_Click(object sender, EventArgs e)
+        {
+            inches = !inches;
+
+            if (inches)
+            {
+                InchesToCm.BackgroundImage = Properties.Resources.inches_01; // Use the Inches image
+            }
+            else
+            {
+                InchesToCm.BackgroundImage = Properties.Resources.CM_01; // Use the CM image
+            }
+            // Set the image layout to stretch within the button
+            InchesToCm.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        private void KGToLB_Click(object sender, EventArgs e)
+        {
+            LB = !LB;
+
+            if (LB)
+            {
+                KGToLB.BackgroundImage = Properties.Resources.LB_01; // Use the LB image
+            }
+            else
+            {
+                KGToLB.BackgroundImage = Properties.Resources.KG_01; // Use the KG image
+            }
+            // Set the image layout to stretch within the button
+            KGToLB.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void CreateAccbtn_Click(object sender, EventArgs e)
@@ -84,15 +122,18 @@ namespace HealthMate_UI
             TimeSpan ageTimeSpan = now - birthdate;
             int Age = (int)Math.Floor(ageTimeSpan.TotalDays / 365.242199);
 
-            int height, weight;
+            double height, weight;
 
-            if (!int.TryParse(Height_cm.Text, out height) || !int.TryParse(Weight.Text, out weight))
+            if (!double.TryParse(Height_cm.Text, out height) || !double.TryParse(Weight.Text, out weight))
             {
                 MessageBox.Show("Please enter valid height and weight.", "Validation Error", MessageBoxButtons.OK);
                 Height_cm.Clear();
                 Weight.Clear();
                 return; // Don't proceed if height or weight is not valid
             }
+
+            height = HeightConverter.ConvertHeight(height, inches); // Convert the height based on the 'inches' flag
+            weight = WeightConverter.ConvertWeight(weight, LB); // Convert the height based on the 'LB' flag
 
             // Calculate BMI
             double BMI = Math.Round(weight / Math.Pow(height / 100.0, 2), 1);

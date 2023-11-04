@@ -45,6 +45,8 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.PasswordVisibilityRE = new System.Windows.Forms.Button();
             this.PasswordVisibility = new System.Windows.Forms.Button();
+            this.InchesToCm = new System.Windows.Forms.Button();
+            this.KGToLB = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // RePassword
@@ -102,18 +104,18 @@
             this.WeightLable.AutoSize = true;
             this.WeightLable.Location = new System.Drawing.Point(350, 48);
             this.WeightLable.Name = "WeightLable";
-            this.WeightLable.Size = new System.Drawing.Size(109, 25);
+            this.WeightLable.Size = new System.Drawing.Size(65, 25);
             this.WeightLable.TabIndex = 28;
-            this.WeightLable.Text = "Weight in KG:";
+            this.WeightLable.Text = "Weight:";
             // 
             // HeightLable
             // 
             this.HeightLable.AutoSize = true;
             this.HeightLable.Location = new System.Drawing.Point(56, 48);
             this.HeightLable.Name = "HeightLable";
-            this.HeightLable.Size = new System.Drawing.Size(108, 25);
+            this.HeightLable.Size = new System.Drawing.Size(62, 25);
             this.HeightLable.TabIndex = 27;
-            this.HeightLable.Text = "Height in CM:";
+            this.HeightLable.Text = "Height:";
             // 
             // Subtitle
             // 
@@ -194,12 +196,32 @@
             this.PasswordVisibility.UseVisualStyleBackColor = true;
             this.PasswordVisibility.Click += new System.EventHandler(this.PasswordVisibility_Click);
             // 
+            // InchesToCm
+            // 
+            this.InchesToCm.Location = new System.Drawing.Point(232, 76);
+            this.InchesToCm.Name = "InchesToCm";
+            this.InchesToCm.Size = new System.Drawing.Size(33, 33);
+            this.InchesToCm.TabIndex = 46;
+            this.InchesToCm.UseVisualStyleBackColor = true;
+            this.InchesToCm.Click += new System.EventHandler(this.InchesToCm_Click);
+            // 
+            // KGToLB
+            // 
+            this.KGToLB.Location = new System.Drawing.Point(526, 76);
+            this.KGToLB.Name = "KGToLB";
+            this.KGToLB.Size = new System.Drawing.Size(33, 33);
+            this.KGToLB.TabIndex = 47;
+            this.KGToLB.UseVisualStyleBackColor = true;
+            this.KGToLB.Click += new System.EventHandler(this.KGToLB_Click);
+            // 
             // CreateAc2EN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(595, 390);
+            this.Controls.Add(this.KGToLB);
+            this.Controls.Add(this.InchesToCm);
             this.Controls.Add(this.PasswordVisibility);
             this.Controls.Add(this.PasswordVisibilityRE);
             this.Controls.Add(this.progressBar1);
@@ -249,5 +271,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button PasswordVisibilityRE;
         private System.Windows.Forms.Button PasswordVisibility;
+        private System.Windows.Forms.Button InchesToCm;
+        private System.Windows.Forms.Button KGToLB;
     }
 }
