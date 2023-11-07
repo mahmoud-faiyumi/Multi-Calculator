@@ -15,6 +15,10 @@ namespace HealthMate_UI
         public AgeCalcEN()
         {
             InitializeComponent();
+            line.Enabled = false;
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button4.Enabled = false;
         }
 
         private void BackBtn_Click(object sender, EventArgs e)

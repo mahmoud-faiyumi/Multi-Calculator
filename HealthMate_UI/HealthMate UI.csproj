@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>app logo.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\app logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdvancedStringBuilder, Version=0.1.0.0, Culture=neutral, PublicKeyToken=e818a2fc08933ddb, processorArchitecture=MSIL">
@@ -159,64 +159,82 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgeCalcEN.cs">
+    <Compile Include="English\AgeCalcEN.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AgeCalcEN.Designer.cs">
+    <Compile Include="English\AgeCalcEN.Designer.cs">
       <DependentUpon>AgeCalcEN.cs</DependentUpon>
     </Compile>
-    <Compile Include="CommonValues.cs" />
-    <Compile Include="HeightConverter.cs" />
-    <Compile Include="EncryptionService.cs" />
-    <Compile Include="InitializeDatabaseConnection.cs" />
-    <Compile Include="LoginEN.cs">
+    <Compile Include="Models\CommonValues.cs" />
+    <Compile Include="English\HealthMonitorEN.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginEN.Designer.cs">
+    <Compile Include="English\HealthMonitorEN.Designer.cs">
+      <DependentUpon>HealthMonitorEN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HeightConverter.cs" />
+    <Compile Include="Models\EncryptionService.cs" />
+    <Compile Include="Models\InitializeDatabaseConnection.cs" />
+    <Compile Include="English\LoginEN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="English\LoginEN.Designer.cs">
       <DependentUpon>LoginEN.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateAc1EN.cs">
+    <Compile Include="English\CreateAc1EN.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateAc1EN.Designer.cs">
+    <Compile Include="English\CreateAc1EN.Designer.cs">
       <DependentUpon>CreateAc1EN.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateAc2EN.cs">
+    <Compile Include="English\CreateAc2EN.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateAc2EN.Designer.cs">
+    <Compile Include="English\CreateAc2EN.Designer.cs">
       <DependentUpon>CreateAc2EN.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main_menuEN.cs">
+    <Compile Include="English\Main_menuEN.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main_menuEN.Designer.cs">
+    <Compile Include="English\Main_menuEN.Designer.cs">
       <DependentUpon>Main_menuEN.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="English\UpdateInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="English\UpdateInfo.Designer.cs">
+      <DependentUpon>UpdateInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserInfoDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UserInfoDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="WeightConverter.cs" />
-    <Compile Include="WelcomeDependTime.cs" />
-    <EmbeddedResource Include="AgeCalcEN.resx">
+    <Compile Include="Models\WeightConverter.cs" />
+    <Compile Include="Models\WelcomeDependTime.cs" />
+    <EmbeddedResource Include="English\AgeCalcEN.resx">
       <DependentUpon>AgeCalcEN.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginEN.resx">
+    <EmbeddedResource Include="English\HealthMonitorEN.resx">
+      <DependentUpon>HealthMonitorEN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="English\LoginEN.resx">
       <DependentUpon>LoginEN.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateAc1EN.resx">
+    <EmbeddedResource Include="English\CreateAc1EN.resx">
       <DependentUpon>CreateAc1EN.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateAc2EN.resx">
+    <EmbeddedResource Include="English\CreateAc2EN.resx">
       <DependentUpon>CreateAc2EN.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main_menuEN.resx">
+    <EmbeddedResource Include="English\Main_menuEN.resx">
       <DependentUpon>Main_menuEN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="English\UpdateInfo.resx">
+      <DependentUpon>UpdateInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -254,7 +272,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app logo.ico" />
+    <Content Include="Resources\app logo.ico" />
     <None Include="Resources\hide eye.png" />
     <None Include="Resources\show eye.png" />
     <None Include="Resources\CM-01.png" />
@@ -264,5 +282,6 @@
     <Content Include="Scripts\zxcvbn-async.js" />
     <Content Include="Scripts\zxcvbn.js" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

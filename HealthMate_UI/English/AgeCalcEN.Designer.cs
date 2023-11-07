@@ -38,6 +38,10 @@
             this.BirthDateDaylabel = new System.Windows.Forms.Label();
             this.LivedForlabel = new System.Windows.Forms.Label();
             this.CustomdatePicker = new System.Windows.Forms.DateTimePicker();
+            this.line = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Subtitle
@@ -123,12 +127,52 @@
             this.CustomdatePicker.Size = new System.Drawing.Size(127, 33);
             this.CustomdatePicker.TabIndex = 51;
             // 
+            // line
+            // 
+            this.line.BackColor = System.Drawing.Color.Gray;
+            this.line.Location = new System.Drawing.Point(398, 111);
+            this.line.Name = "line";
+            this.line.Size = new System.Drawing.Size(10, 242);
+            this.line.TabIndex = 52;
+            this.line.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Gray;
+            this.button1.Location = new System.Drawing.Point(25, 111);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(248, 9);
+            this.button1.TabIndex = 53;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Gray;
+            this.button2.Location = new System.Drawing.Point(25, 191);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(248, 9);
+            this.button2.TabIndex = 54;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Gray;
+            this.button4.Location = new System.Drawing.Point(25, 151);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(248, 9);
+            this.button4.TabIndex = 56;
+            this.button4.UseVisualStyleBackColor = false;
+            // 
             // AgeCalcEN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(595, 390);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.line);
             this.Controls.Add(this.CustomdatePicker);
             this.Controls.Add(this.LivedForlabel);
             this.Controls.Add(this.BirthDateDaylabel);
@@ -144,7 +188,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.Name = "AgeCalcEN";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HealthMate";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AgeCalcEN_FormClosing);
@@ -165,5 +208,9 @@
         private System.Windows.Forms.Label BirthDateDaylabel;
         private System.Windows.Forms.Label LivedForlabel;
         private System.Windows.Forms.DateTimePicker CustomdatePicker;
+        private System.Windows.Forms.Button line;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button4;
     }
 }

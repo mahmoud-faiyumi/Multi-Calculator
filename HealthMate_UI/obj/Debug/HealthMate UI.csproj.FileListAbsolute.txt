@@ -62,3 +62,5 @@ C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\en\zxcvbn.net.resource
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\fr\zxcvbn.net.resources.dll
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.CreateAc1EN.resources
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.AgeCalcEN.resources
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.HealthMonitorEN.resources
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.UpdateInfo.resources

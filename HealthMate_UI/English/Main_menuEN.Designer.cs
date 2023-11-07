@@ -37,6 +37,8 @@
             this.LogOutBtn = new System.Windows.Forms.Button();
             this.WelcomeMsg = new System.Windows.Forms.Label();
             this.HappyBirthday = new System.Windows.Forms.Label();
+            this.line = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Subtitle
@@ -51,7 +53,7 @@
             // 
             // AgeCalcBtn
             // 
-            this.AgeCalcBtn.Location = new System.Drawing.Point(42, 114);
+            this.AgeCalcBtn.Location = new System.Drawing.Point(42, 110);
             this.AgeCalcBtn.Name = "AgeCalcBtn";
             this.AgeCalcBtn.Size = new System.Drawing.Size(192, 75);
             this.AgeCalcBtn.TabIndex = 37;
@@ -61,25 +63,27 @@
             // 
             // HealthMonitorBtn
             // 
-            this.HealthMonitorBtn.Location = new System.Drawing.Point(42, 222);
+            this.HealthMonitorBtn.Location = new System.Drawing.Point(42, 240);
             this.HealthMonitorBtn.Name = "HealthMonitorBtn";
             this.HealthMonitorBtn.Size = new System.Drawing.Size(192, 75);
             this.HealthMonitorBtn.TabIndex = 38;
             this.HealthMonitorBtn.Text = "Health Monitor";
             this.HealthMonitorBtn.UseVisualStyleBackColor = true;
+            this.HealthMonitorBtn.Click += new System.EventHandler(this.HealthMonitorBtn_Click);
             // 
             // UpdateInfoBtn
             // 
-            this.UpdateInfoBtn.Location = new System.Drawing.Point(369, 222);
+            this.UpdateInfoBtn.Location = new System.Drawing.Point(369, 240);
             this.UpdateInfoBtn.Name = "UpdateInfoBtn";
             this.UpdateInfoBtn.Size = new System.Drawing.Size(192, 75);
             this.UpdateInfoBtn.TabIndex = 39;
             this.UpdateInfoBtn.Text = "Update Your Data";
             this.UpdateInfoBtn.UseVisualStyleBackColor = true;
+            this.UpdateInfoBtn.Click += new System.EventHandler(this.UpdateInfoBtn_Click);
             // 
             // DateDifferenceBtn
             // 
-            this.DateDifferenceBtn.Location = new System.Drawing.Point(369, 114);
+            this.DateDifferenceBtn.Location = new System.Drawing.Point(369, 110);
             this.DateDifferenceBtn.Name = "DateDifferenceBtn";
             this.DateDifferenceBtn.Size = new System.Drawing.Size(192, 75);
             this.DateDifferenceBtn.TabIndex = 40;
@@ -113,12 +117,34 @@
             this.HappyBirthday.Size = new System.Drawing.Size(0, 25);
             this.HappyBirthday.TabIndex = 43;
             // 
+            // line
+            // 
+            this.line.BackColor = System.Drawing.Color.Gray;
+            this.line.Location = new System.Drawing.Point(292, 114);
+            this.line.Name = "line";
+            this.line.Size = new System.Drawing.Size(10, 201);
+            this.line.TabIndex = 51;
+            this.line.Text = "button1";
+            this.line.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Gray;
+            this.button1.Location = new System.Drawing.Point(42, 209);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(519, 10);
+            this.button1.TabIndex = 52;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // Main_MenuEN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(595, 390);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.line);
             this.Controls.Add(this.HappyBirthday);
             this.Controls.Add(this.WelcomeMsg);
             this.Controls.Add(this.LogOutBtn);
@@ -131,7 +157,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.MaximizeBox = false;
             this.Name = "Main_MenuEN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HealthMate";
@@ -152,5 +177,7 @@
         private System.Windows.Forms.Button LogOutBtn;
         private System.Windows.Forms.Label WelcomeMsg;
         private System.Windows.Forms.Label HappyBirthday;
+        private System.Windows.Forms.Button line;
+        private System.Windows.Forms.Button button1;
     }
 }

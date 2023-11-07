@@ -49,7 +49,13 @@ namespace HealthMate_UI
                                 FName = reader["FName"].ToString(),
                                 LName = reader["LName"].ToString(),
                                 UserName = reader["UserName"].ToString(),
-                                BirthDate = (DateTime)reader["BirthDate"]
+                                BirthDate = (DateTime)reader["BirthDate"],
+                                ActivityLevel = reader["ActivityLevel"].ToString(),
+                                Age = (int)reader["Age"],
+                                BMI = (double)reader["BMI"],
+                                Gender = reader["Gender"].ToString(),
+                                Height = (double)reader["Height"],
+                                Weight = (double)reader["Weight"]
                             };
 
                             string passwordFromDB = reader["Password"].ToString();

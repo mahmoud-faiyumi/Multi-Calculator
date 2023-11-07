@@ -12,6 +12,8 @@ namespace HealthMate_UI
         {
             InitializeComponent();
             databaseManager = new DatabaseManager();
+            line.Enabled = false;
+            button1.Enabled = false;
         }
 
         private void Main_menuEN_Load(object sender, EventArgs e)
@@ -44,6 +46,20 @@ namespace HealthMate_UI
             this.Hide();
             AgeCalcEN ageCalcEN = new AgeCalcEN();
             ageCalcEN.Show();
+        }
+
+        private void HealthMonitorBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HealthMonitorEN healthMonitorEN = new HealthMonitorEN();
+            healthMonitorEN.Show();
+        }
+
+        private void UpdateInfoBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            UpdateInfo updateInfoEN = new UpdateInfo();
+            updateInfoEN.Show();
         }
     }
 }
