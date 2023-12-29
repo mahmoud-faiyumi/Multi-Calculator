@@ -16,7 +16,7 @@ namespace HealthMate_UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginEN());
+            Application.Run(new Login());
         }
     }
 }

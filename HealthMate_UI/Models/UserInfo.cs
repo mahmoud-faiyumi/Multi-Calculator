@@ -1,18 +1,21 @@
-﻿using System;
+﻿using HealthMate_UI.Constants;
+using System;
 
 namespace HealthMate_UI.Models
 {
     public class UserInfo
     {
-        public string FName;
-        public string LName;
-        public string UserName;
-        public DateTime BirthDate;
-        public string Gender;
-        public double Height;
-        public double Weight;
-        public int Age;
-        public string ActivityLevel;
-        public double BMI;
+        public string FName { get; set; }
+        public string LName { get; set; }
+        public string UserName { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string Gender { get; set; }
+        public double Height { get; set; }
+        public double Weight { get; set; }
+        public int Age { get; set; }
+        public string ActivityLevel { get; set; }
+        public double BMI { get; set; }
+        public bool IsArabic { get; set; }
+        public bool IsDark  { get;  set; }
     }
 }
