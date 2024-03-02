@@ -19,7 +19,6 @@ C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.exe
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.pdb
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\System.Data.SqlClient.dll
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\System.Data.SqlClient.xml
-C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.csproj.CopyComplete
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.Main_menuEN.resources
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\LiteDB.dll
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\System.Buffers.dll
@@ -58,7 +57,6 @@ C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\ru-RU\JavaScriptEngine
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\ru-RU\JavaScriptEngineSwitcher.V8.resources.dll
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\en\zxcvbn.net.resources.dll
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\fr\zxcvbn.net.resources.dll
-C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.HealthMonitorEN.resources
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.csproj.SuggestedBindingRedirects.cache
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.exe.config
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\Database1.mdf
@@ -147,3 +145,11 @@ C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.CreateAc
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.CreateAc2.resources
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.AgeCalc.resources
 C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.UpdateInfo.resources
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.HealthMonitor.resources
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.Screens.Calories_Tracker.resources
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMa.2BCBB87A.Up2Date
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate_UI.Screens.Breakfast.resources
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\HealthMate UI.exe.manifest
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\bin\Debug\HealthMate UI.application
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.exe.manifest
+C:\Users\mahmo\Desktop\HealthMate\HealthMate_UI\obj\Debug\HealthMate UI.application

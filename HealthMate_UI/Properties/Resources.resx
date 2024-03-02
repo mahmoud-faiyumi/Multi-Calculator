@@ -124,14 +124,26 @@
   <data name="Back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="breakfast" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\breakfast.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="CM_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CM-01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\moon_8391436.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="dinner1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dinner1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="EN" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EN.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="extra_meal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\extra meal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="femalePP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\femalePP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hide_eye" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hide eye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -150,6 +162,12 @@
   </data>
   <data name="Logout" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lunch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lunch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="malePP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\malePP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="show_eye" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\show eye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

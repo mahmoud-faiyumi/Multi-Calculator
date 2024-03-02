@@ -1,5 +1,6 @@
 ﻿using HealthMate_UI.Constants;
 using System;
+using System.Drawing;
 
 namespace HealthMate_UI.Models
 {
@@ -17,5 +18,7 @@ namespace HealthMate_UI.Models
         public double BMI { get; set; }
         public bool IsArabic { get; set; }
         public bool IsDark  { get;  set; }
+        public bool IsPPNull { get; set; }
+        public Image PP { get; set; }
     }
 }
