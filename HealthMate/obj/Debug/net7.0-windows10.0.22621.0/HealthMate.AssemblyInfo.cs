@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HealthMate")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7fc073402d99de730e26b99c9502c1280e5f7cac")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef35f51624b5fd408a48100614f8c752433ab224")]
 [assembly: System.Reflection.AssemblyProductAttribute("HealthMate")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HealthMate")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -182,7 +182,7 @@
             // 
             // Breakfast
             // 
-            this.Breakfast.Location = new System.Drawing.Point(44, 169);
+            this.Breakfast.Location = new System.Drawing.Point(36, 116);
             this.Breakfast.Name = "Breakfast";
             this.Breakfast.Size = new System.Drawing.Size(101, 28);
             this.Breakfast.TabIndex = 75;
@@ -192,7 +192,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(196, 169);
+            this.button2.Location = new System.Drawing.Point(188, 116);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(79, 28);
             this.button2.TabIndex = 76;
@@ -201,7 +201,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(334, 169);
+            this.button3.Location = new System.Drawing.Point(326, 116);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(83, 28);
             this.button3.TabIndex = 77;
@@ -210,7 +210,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(463, 169);
+            this.button4.Location = new System.Drawing.Point(455, 116);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(110, 28);
             this.button4.TabIndex = 78;
@@ -220,7 +220,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::HealthMate_UI.Properties.Resources.breakfast;
-            this.pictureBox1.Location = new System.Drawing.Point(45, 93);
+            this.pictureBox1.Location = new System.Drawing.Point(37, 40);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 70);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -230,7 +230,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::HealthMate_UI.Properties.Resources.extra_meal;
-            this.pictureBox2.Location = new System.Drawing.Point(467, 102);
+            this.pictureBox2.Location = new System.Drawing.Point(459, 49);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(100, 61);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -240,7 +240,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::HealthMate_UI.Properties.Resources.dinner1;
-            this.pictureBox3.Location = new System.Drawing.Point(325, 113);
+            this.pictureBox3.Location = new System.Drawing.Point(317, 60);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(100, 50);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -250,7 +250,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::HealthMate_UI.Properties.Resources.lunch;
-            this.pictureBox4.Location = new System.Drawing.Point(184, 113);
+            this.pictureBox4.Location = new System.Drawing.Point(176, 60);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(100, 50);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

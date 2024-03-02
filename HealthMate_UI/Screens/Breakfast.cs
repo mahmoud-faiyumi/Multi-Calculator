@@ -16,5 +16,17 @@ namespace HealthMate_UI.Screens
         {
             InitializeComponent();
         }
+
+        private void Breakfast_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Enter_Click(object sender, EventArgs e)
+        {
+            string breakCal = BrkFstCal.Text;
+            this.Close();
+            MessageBox.Show(breakCal);
+        }
     }
 }

@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Breakfast));
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.BrkFstCal = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -43,14 +43,15 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Enter";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Enter_Click);
             // 
-            // textBox1
+            // BrkFstCal
             // 
-            this.textBox1.Font = new System.Drawing.Font("El Messiri SemiBold", 12F, System.Drawing.FontStyle.Bold);
-            this.textBox1.Location = new System.Drawing.Point(85, 52);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(113, 33);
-            this.textBox1.TabIndex = 1;
+            this.BrkFstCal.Font = new System.Drawing.Font("El Messiri SemiBold", 12F, System.Drawing.FontStyle.Bold);
+            this.BrkFstCal.Location = new System.Drawing.Point(85, 52);
+            this.BrkFstCal.Name = "BrkFstCal";
+            this.BrkFstCal.Size = new System.Drawing.Size(113, 33);
+            this.BrkFstCal.TabIndex = 1;
             // 
             // label1
             // 
@@ -68,7 +69,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(278, 138);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.BrkFstCal);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -76,6 +77,7 @@
             this.Name = "Breakfast";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Breakfast";
+            this.Load += new System.EventHandler(this.Breakfast_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -84,7 +86,7 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox BrkFstCal;
         private System.Windows.Forms.Label label1;
     }
 }
